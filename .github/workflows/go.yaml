@@ -13,4 +13,4 @@ jobs:
       
     - name: run jq
       run: |
-        jq version
+        jq --version

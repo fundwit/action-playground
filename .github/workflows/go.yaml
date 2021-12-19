@@ -23,5 +23,6 @@ jobs:
 
         if [ `echo "${current_cov} < ${parent_cov}"|bc` -eq 1 ] ; then
           echo  "error: coverage of current commit must equal or greater than coverage of parent commit"
+          exit 1
         fi
         

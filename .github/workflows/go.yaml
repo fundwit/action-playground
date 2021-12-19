@@ -8,6 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: xxx
+    - name: Kubernetes toolset
+      # You may pin to the exact commit or the version.
+      # uses: stefanprodan/kube-tools@f07f65e4e6dfdbcb9d220b9b9d57cd25e763b3c5
+      uses: stefanprodan/kube-tools@v1.7.1
+      
+    - name: run jq
       run: |
-        apt-get install jq
+        jq version

@@ -18,5 +18,6 @@ jobs:
         echo '-- coverage gate --'
         origin_cov=$(echo commit_coverage.json | jq .commit.parent_totals.c)
         new_cov=$(echo commit_coverage.json | jq .commit.totals.c)
+        echo "origin: ${origin_cov}, new coverage: ${new_cov}"
         ((origin_cov <= new_cov))
         

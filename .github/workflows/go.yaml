@@ -24,7 +24,7 @@ jobs:
           exit 1
         fi
         
-        if [ "$parent_cov" == "" or "$parent_cov" == "null" ]; then
+        if [ "s$parent_cov" == "s" or "$parent_cov" == "null" ]; then
            echo "coverage of parent not found, set to 0"
            parent_cov=0
         fi

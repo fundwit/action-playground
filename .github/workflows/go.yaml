@@ -19,6 +19,15 @@ jobs:
 
         parent_cov=$(echo $cov_data | jq -r .commit.parent_totals.c)
         current_cov=$(echo $cov_data | jq -r .commit.totals.c)
+        if [ "$current_cov" == "" ]; then
+          echo  "error: coverage data not found"
+          exit 1
+        fi
+        
+        if [ "$parent_cov" == "" ]; then
+           parent_cov=0
+        fi
+        
         echo "coverage change: ${parent_cov} => ${current_cov} " $(echo "$current_cov - $parent_cov" | bc)
 
         if [ `echo "${current_cov} < ${parent_cov}"|bc` -eq 1 ] ; then

@@ -19,12 +19,12 @@ jobs:
 
         parent_cov=$(echo $cov_data | jq -r .commit.parent_totals1.c)
         current_cov=$(echo $cov_data | jq -r .commit.totals.c)
-        if [ "$current_cov" == "" ]; then
+        if [ "$current_cov" == "" -o "$current_cov" == "null" ]; then
           echo  "error: coverage data not found"
           exit 1
         fi
         
-        if [ "$parent_cov" == "" ]; then
+        if [ "$parent_cov" == "" -o "$current_cov" == "null" ]; then
            echo "coverage of parent not found, set to 0"
            parent_cov=0
         fi

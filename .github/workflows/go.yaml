@@ -18,7 +18,7 @@ jobs:
                   https://codecov.io/api/gh/fundwit/skysight/commit/1fc1ca20973b2d362b7bb24b1169039f48825e59)
 
         parent_cov=$(echo $cov_data | jq -r .commit.parent_totals.c)
-        current_cov=$(echo $cov_data | jq -r .commit.totals.c)
+        current_cov=$(echo $cov_data | jq -r .commit.parent_totals.c)
         if [ "$current_cov" == "" -o "$current_cov" == "null" ]; then
           echo "error: coverage data not found"
           echo $cov_data

@@ -17,14 +17,14 @@ jobs:
         cov_data=$(curl -s -H "Authorization: 2d52a5c1-6ce6-4c27-976b-7a23de618b8a" \
                   https://codecov.io/api/gh/fundwit/skysight/commit/1fc1ca20973b2d362b7bb24b1169039f48825e59)
 
-        parent_cov=$(echo "" | jq -r .commit.parent_totals.c)
+        parent_cov=$(echo $cov_data | jq -r .commit.parent_totals.c1)
         current_cov=$(echo $cov_data | jq -r .commit.totals.c)
         if [ "$current_cov" == "" ]; then
           echo  "error: coverage data not found"
           exit 1
         fi
         
-        if [ "$parent_cov" == "" ]; then
+        if [ "$parent_cov" == "" or "$parent_cov" == "null" ]; then
            echo "coverage of parent not found, set to 0"
            parent_cov=0
         fi
